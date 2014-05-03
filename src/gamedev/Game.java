@@ -40,9 +40,7 @@ public class Game extends StateBasedGame {
 		this.getState(menu).init(gc, this);
 		this.getState(play).init(gc, this);
 		this.enterState(menu);
-		System.out.println("1111111111111111111");
 		if (gc instanceof AppGameContainer && !gc.isFullscreen()) {
-			System.out.println("TEST TEST TEST TEST TEST");
 			String[] icons = { "res/icon/Ap_icon.png", "res/icon/Ap_icon2.png" };
 			gc.setIcons(icons);
 		}
