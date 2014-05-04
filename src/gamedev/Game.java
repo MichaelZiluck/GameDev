@@ -23,6 +23,9 @@ public class Game extends StateBasedGame {
 	public static final int menu = 0;
 	public static final int play = 1;
 
+	// game container
+	private static AppGameContainer appgc = null;
+
 	/**
 	 * Create this class
 	 */
@@ -44,16 +47,17 @@ public class Game extends StateBasedGame {
 			String[] icons = { "res/icon/Ap_icon.png", "res/icon/Ap_icon2.png" };
 			gc.setIcons(icons);
 		}
+		gc.setVSync(true);
+		// gc.setShowFPS(false);
 	}
 
 	/**
 	 * This runs when the jar is run
 	 */
 	public static void main(String[] args) {
-		AppGameContainer appgc;
 		try {
 			appgc = new AppGameContainer(new Game(NAME));
-			appgc.setDisplayMode(640, 360, false);
+			appgc.setDisplayMode(1280, 720, false);
 			appgc.start();
 		} catch (SlickException ex) {
 			ex.printStackTrace();

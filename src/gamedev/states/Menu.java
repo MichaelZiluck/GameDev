@@ -4,6 +4,7 @@
  */
 package gamedev.states;
 
+import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Input;
@@ -29,16 +30,17 @@ public class Menu extends BasicGameState {
 	/**
 	 * Start the menu state
 	 */
-	public void init(GameContainer gc, StateBasedGame sbg) throws SlickException {}
+	public void init(GameContainer gc, StateBasedGame sbg) throws SlickException {
+	}
 
 	/**
 	 * Draw the first image for the state
 	 */
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g) throws SlickException {
+		g.setBackground(Color.blue);
 		g.fillOval(75, 100, 100, 100);
 		g.drawString("Play Now!", 80, 70);
 		g.drawString("Mouse Position:\nx: " + xpos + "\ny: " + ypos, 200, 200);
-		g.drawRect(200, 200, 25, 25);
 	}
 
 	/**
