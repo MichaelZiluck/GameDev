@@ -40,6 +40,7 @@ public class Game extends StateBasedGame {
 	 * Initialize the game states
 	 */
 	public void initStatesList(GameContainer gc) throws SlickException {
+
 		this.getState(menu).init(gc, this);
 		this.getState(play).init(gc, this);
 		this.enterState(menu);
@@ -49,6 +50,7 @@ public class Game extends StateBasedGame {
 		}
 		gc.setVSync(true);
 		// gc.setShowFPS(false);
+
 	}
 
 	/**

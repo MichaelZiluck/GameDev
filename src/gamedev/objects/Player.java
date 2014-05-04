@@ -1,12 +1,12 @@
 package gamedev.objects;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 
+@SuppressWarnings("unused")
 public class Player {
 
 	private int x;

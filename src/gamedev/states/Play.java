@@ -15,7 +15,6 @@ import org.newdawn.slick.state.StateBasedGame;
 public class Play extends BasicGameState {
 
 	private Image player, movingDown, movingUp, movingRight, movingLeft;
-	private Image bg;
 	private float xPos = 0;
 	private float yPos = 0;
 	boolean quit = false;
@@ -31,7 +30,6 @@ public class Play extends BasicGameState {
 	 * Start the menu state
 	 */
 	public void init(GameContainer gc, StateBasedGame sbg) throws SlickException {
-		bg = new Image("res/map/map.png");
 		player = new Image("res/sprites/front.png");
 		movingUp = new Image("res/sprites/back.png");
 		movingDown = new Image("res/sprites/front.png");
@@ -53,21 +51,24 @@ public class Play extends BasicGameState {
 		Input input = gc.getInput();
 
 		if (input.isKeyDown(Input.KEY_W)) {
-			yPos -= 3;
+			yPos -= 4;
 			player = movingUp;
 		}
 		if (input.isKeyDown(Input.KEY_S)) {
-			yPos += 3;
+			yPos += 4;
 			player = movingDown;
 		}
 		if (input.isKeyDown(Input.KEY_A)) {
-			xPos -= 3;
+			xPos -= 4;
 			player = movingLeft;
 		}
 		if (input.isKeyDown(Input.KEY_D)) {
-			xPos += 3;
+			xPos += 4;
 			player = movingRight;
 		}
+
+		if (input.isKeyDown(Input.KEY_ESCAPE))
+			System.exit(0);
 
 	}
 
