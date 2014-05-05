@@ -64,7 +64,7 @@ public class Game extends StateBasedGame {
 			if (!file.exists())
 				file.createNewFile();
 			BufferedReader br = new BufferedReader(new FileReader(file));
-			String str = "Ender: 5";
+			String str;
 			while ((str = br.readLine()) != null) {
 				int t = str.indexOf(":");
 				scores.put(str.substring(0, t), Integer.parseInt(str.substring(t + 2, str.length())));
@@ -73,7 +73,6 @@ public class Game extends StateBasedGame {
 		} catch (IOException ex) {
 			ex.printStackTrace();
 		}
-
 	}
 
 	/**
