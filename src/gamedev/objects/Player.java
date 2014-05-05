@@ -25,10 +25,10 @@ public class Player {
 
 	private void createImages() {
 		try {
-			movingUp = new Image("res/sprites/back.png");
-			movingDown = new Image("res/sprites/front.png");
-			movingRight = new Image("res/sprites/right.png");
-			movingLeft = new Image("res/sprites/left.png");
+			movingUp = new Image("res/player/sprites/back.png");
+			movingDown = new Image("res/player/sprites/front.png");
+			movingRight = new Image("res/player/sprites/right.png");
+			movingLeft = new Image("res/player/sprites/left.png");
 			player = movingDown;
 		} catch (SlickException ex) {
 			ex.printStackTrace();
