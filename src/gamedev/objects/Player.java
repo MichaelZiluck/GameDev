@@ -6,11 +6,10 @@ import java.util.List;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 
-@SuppressWarnings("unused")
 public class Player {
 
-	private int x;
-	private int y;
+	private float x;
+	private float y;
 
 	private Image player;
 	private Image movingUp, movingDown, movingRight, movingLeft;
@@ -21,6 +20,10 @@ public class Player {
 	public Player() {
 		x = 0;
 		y = 0;
+		createImages();
+	}
+
+	private void createImages() {
 		try {
 			movingUp = new Image("res/sprites/back.png");
 			movingDown = new Image("res/sprites/front.png");
@@ -35,16 +38,44 @@ public class Player {
 	public void setDirection(String direction) {
 		if (directions.contains(direction)) {
 			switch (direction) {
-			case "left":
-				break;
-			case "right":
-				break;
-			case "up":
-				break;
-			case "down":
-				break;
+				case "left":
+					player = movingLeft;
+					if (x <= 0)
+						break;
+					x -= 4;
+					break;
+				case "right":
+					player = movingRight;
+					if (x >= 1240)
+						break;
+					x += 4;
+					break;
+				case "up":
+					player = movingUp;
+					if (y <= 0)
+						break;
+					y -= 4;
+					break;
+				case "down":
+					player = movingDown;
+					if (y >= 680)
+						break;
+					y += 4;
+					break;
 			}
 		}
+	}
+
+	public float getX() {
+		return x;
+	}
+
+	public float getY() {
+		return y;
+	}
+
+	public Image getImage() {
+		return player;
 	}
 
 }

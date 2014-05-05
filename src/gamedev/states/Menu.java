@@ -26,9 +26,7 @@ public class Menu extends BasicGameState {
 	/**
 	 * Create the menu class
 	 */
-	public Menu(int state) {
-
-	}
+	public Menu(int state) {}
 
 	/**
 	 * Start the menu state

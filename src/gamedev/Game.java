@@ -7,6 +7,12 @@ package gamedev;
 import gamedev.states.Menu;
 import gamedev.states.Play;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.HashMap;
+
 import org.newdawn.slick.AppGameContainer;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.SlickException;
@@ -17,7 +23,9 @@ public class Game extends StateBasedGame {
 	/**
 	 * The name of the game
 	 */
-	public static final String NAME = "TBD";
+	public static final String NAME = "Bullet Hell";
+
+	public static HashMap<String, Integer> scores = new HashMap<String, Integer>();
 
 	// state numbers
 	public static final int menu = 0;
@@ -50,6 +58,21 @@ public class Game extends StateBasedGame {
 		}
 		gc.setVSync(true);
 		// gc.setShowFPS(false);
+
+		try {
+			File file = new File(new File(Game.class.getProtectionDomain().getCodeSource().getLocation().getPath()).getParentFile(), "scores.txt");
+			if (!file.exists())
+				file.createNewFile();
+			BufferedReader br = new BufferedReader(new FileReader(file));
+			String str = "Ender: 5";
+			while ((str = br.readLine()) != null) {
+				int t = str.indexOf(":");
+				scores.put(str.substring(0, t), Integer.parseInt(str.substring(t + 2, str.length())));
+			}
+			br.close();
+		} catch (IOException ex) {
+			ex.printStackTrace();
+		}
 
 	}
 

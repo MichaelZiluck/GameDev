@@ -4,9 +4,15 @@
  */
 package gamedev.states;
 
+import gamedev.objects.Player;
+import gamedev.objects.Star;
+
+import java.util.ArrayList;
+import java.util.Random;
+
+import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
-import org.newdawn.slick.Image;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.BasicGameState;
@@ -14,61 +20,77 @@ import org.newdawn.slick.state.StateBasedGame;
 
 public class Play extends BasicGameState {
 
-	private Image player, movingDown, movingUp, movingRight, movingLeft;
-	private float xPos = 0;
-	private float yPos = 0;
-	boolean quit = false;
+	private Player p;
+	private boolean starred = false;
+	private boolean showMenu = false;
+	private boolean showScores = false;
+	private ArrayList<Star> stars = new ArrayList<Star>();
 
 	/**
 	 * Create the menu class
 	 */
-	public Play(int state) {
-
-	}
+	public Play(int state) {}
 
 	/**
 	 * Start the menu state
 	 */
 	public void init(GameContainer gc, StateBasedGame sbg) throws SlickException {
-		player = new Image("res/sprites/front.png");
-		movingUp = new Image("res/sprites/back.png");
-		movingDown = new Image("res/sprites/front.png");
-		movingRight = new Image("res/sprites/right.png");
-		movingLeft = new Image("res/sprites/left.png");
+		p = new Player();
 	}
 
 	/**
 	 * Draw the first image for the state
 	 */
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g) throws SlickException {
-		g.drawImage(player, xPos, yPos);
+
+		g.setBackground(Color.black);
+
+		if (!starred) {
+			Random r = new Random();
+			for (int i = 0; i < 75; i++) {
+				stars.add(new Star(r.nextInt(gc.getWidth()), r.nextInt(gc.getHeight())));
+			}
+			starred = true;
+		}
+
+		for (Star star : stars) {
+			g.fillOval(star.getX(), star.getY(), 5, 5);
+		}
+
+		g.drawImage(p.getImage(), p.getX(), p.getY());
+
+		if (showMenu)
+			g.drawString("Quit: (Q)\nHigh Scores: (S)", 50, 100);
+
 	}
 
 	/**
 	 * Gives the illusion of animation, draws the class
 	 */
 	public void update(GameContainer gc, StateBasedGame sbg, int delta) throws SlickException {
+
 		Input input = gc.getInput();
 
-		if (input.isKeyDown(Input.KEY_W)) {
-			yPos -= 4;
-			player = movingUp;
-		}
-		if (input.isKeyDown(Input.KEY_S)) {
-			yPos += 4;
-			player = movingDown;
-		}
-		if (input.isKeyDown(Input.KEY_A)) {
-			xPos -= 4;
-			player = movingLeft;
-		}
-		if (input.isKeyDown(Input.KEY_D)) {
-			xPos += 4;
-			player = movingRight;
-		}
+		if (input.isKeyDown(Input.KEY_W))
+			p.setDirection("up");
 
-		if (input.isKeyDown(Input.KEY_ESCAPE))
+		if (input.isKeyDown(Input.KEY_S))
+			p.setDirection("down");
+
+		if (input.isKeyDown(Input.KEY_A))
+			p.setDirection("left");
+
+		if (input.isKeyDown(Input.KEY_D))
+			p.setDirection("right");
+
+		if (input.isKeyPressed(Input.KEY_ESCAPE))
+			showMenu = !showMenu;
+
+		if (showMenu && input.isKeyDown(Input.KEY_Q))
 			System.exit(0);
+
+		if (showMenu && input.isKeyDown(Input.KEY_H))
+			showScores = !showScores;
 
 	}
 
