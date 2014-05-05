@@ -52,7 +52,7 @@ public class Play extends BasicGameState {
 			}
 			starred = true;
 		}
-
+		
 		for (Star star : stars) {
 			g.fillOval(star.getX(), star.getY(), 5, 5);
 		}
@@ -60,7 +60,7 @@ public class Play extends BasicGameState {
 		g.drawImage(p.getImage(), p.getX(), p.getY());
 
 		if (showMenu)
-			g.drawString("Quit: (Q)\nHigh Scores: (S)", 50, 100);
+			g.drawString("Quit: (Q)\nHigh Scores: (H)", 50, 100);
 
 	}
 

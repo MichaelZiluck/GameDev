@@ -38,30 +38,30 @@ public class Player {
 	public void setDirection(String direction) {
 		if (directions.contains(direction)) {
 			switch (direction) {
-				case "left":
-					player = movingLeft;
-					if (x <= 0)
-						break;
-					x -= 4;
+			case "left":
+				player = movingLeft;
+				if (x <= 0)
 					break;
-				case "right":
-					player = movingRight;
-					if (x >= 1240)
-						break;
-					x += 4;
+				x -= 4;
+				break;
+			case "right":
+				player = movingRight;
+				if (x >= 1240)
 					break;
-				case "up":
-					player = movingUp;
-					if (y <= 0)
-						break;
-					y -= 4;
+				x += 4;
+				break;
+			case "up":
+				player = movingUp;
+				if (y <= 0)
 					break;
-				case "down":
-					player = movingDown;
-					if (y >= 680)
-						break;
-					y += 4;
+				y -= 4;
+				break;
+			case "down":
+				player = movingDown;
+				if (y >= 680)
 					break;
+				y += 4;
+				break;
 			}
 		}
 	}
