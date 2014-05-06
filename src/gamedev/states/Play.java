@@ -4,6 +4,7 @@
  */
 package gamedev.states;
 
+import gamedev.objects.Enemy;
 import gamedev.objects.Player;
 import gamedev.objects.Star;
 
@@ -21,21 +22,31 @@ import org.newdawn.slick.state.StateBasedGame;
 public class Play extends BasicGameState {
 
 	private Player p = null;
-	private boolean starred = false;
 	private boolean showMenu = false;
 	private boolean paused = false;
 	private ArrayList<Star> stars = new ArrayList<Star>();
+	private ArrayList<Enemy> enemies = new ArrayList<Enemy>();
 
 	/**
 	 * Create the menu class
 	 */
-	public Play() {}
+	public Play() {
+	}
 
 	/**
 	 * Start the menu state
 	 */
 	public void init(GameContainer gc, StateBasedGame sbg) throws SlickException {
 		p = new Player(gc);
+		Random r = new Random();
+		for (int i = 0; i < 75; i++) {
+			stars.add(new Star(r.nextInt(gc.getWidth()), r.nextInt(gc.getHeight())));
+		}
+
+		for (int i = 0; i < 2; i++) {
+			enemies.add(new Enemy(1 + r.nextInt(5)));
+		}
+
 	}
 
 	/**
@@ -44,14 +55,6 @@ public class Play extends BasicGameState {
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g) throws SlickException {
 
 		g.setBackground(Color.black);
-
-		if (!starred) {
-			Random r = new Random();
-			for (int i = 0; i < 75; i++) {
-				stars.add(new Star(r.nextInt(gc.getWidth()), r.nextInt(gc.getHeight())));
-			}
-			starred = true;
-		}
 
 		for (Star star : stars) {
 			g.fillOval(star.getX(), star.getY(), 5, 5);
