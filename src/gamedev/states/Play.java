@@ -20,22 +20,22 @@ import org.newdawn.slick.state.StateBasedGame;
 
 public class Play extends BasicGameState {
 
-	private Player p;
+	private Player p = null;
 	private boolean starred = false;
 	private boolean showMenu = false;
-	private boolean showScores = false;
+	private boolean paused = false;
 	private ArrayList<Star> stars = new ArrayList<Star>();
 
 	/**
 	 * Create the menu class
 	 */
-	public Play(int state) {}
+	public Play() {}
 
 	/**
 	 * Start the menu state
 	 */
 	public void init(GameContainer gc, StateBasedGame sbg) throws SlickException {
-		p = new Player();
+		p = new Player(gc);
 	}
 
 	/**
@@ -52,7 +52,7 @@ public class Play extends BasicGameState {
 			}
 			starred = true;
 		}
-		
+
 		for (Star star : stars) {
 			g.fillOval(star.getX(), star.getY(), 5, 5);
 		}
@@ -60,7 +60,7 @@ public class Play extends BasicGameState {
 		g.drawImage(p.getImage(), p.getX(), p.getY());
 
 		if (showMenu)
-			g.drawString("Quit: (Q)\nHigh Scores: (H)", 50, 100);
+			g.drawString("Quit: (Q)\nPause: (P)", 50, 100);
 
 	}
 
@@ -71,27 +71,30 @@ public class Play extends BasicGameState {
 
 		Input input = gc.getInput();
 
-		if (input.isKeyDown(Input.KEY_W))
-			p.setDirection("up");
+		if (!paused) {
 
-		if (input.isKeyDown(Input.KEY_S))
-			p.setDirection("down");
+			if (input.isKeyDown(Input.KEY_W))
+				p.setDirection("up");
 
-		if (input.isKeyDown(Input.KEY_A))
-			p.setDirection("left");
+			if (input.isKeyDown(Input.KEY_S))
+				p.setDirection("down");
 
-		if (input.isKeyDown(Input.KEY_D))
-			p.setDirection("right");
+			if (input.isKeyDown(Input.KEY_A))
+				p.setDirection("left");
 
-		if (input.isKeyPressed(Input.KEY_ESCAPE))
-			showMenu = !showMenu;
+			if (input.isKeyDown(Input.KEY_D))
+				p.setDirection("right");
 
+			if (input.isKeyPressed(Input.KEY_ESCAPE))
+				showMenu = !showMenu;
+
+		}
 		if (showMenu && input.isKeyDown(Input.KEY_Q))
 			System.exit(0);
 
-		if (showMenu && input.isKeyDown(Input.KEY_H))
-			showScores = !showScores;
-
+		if (showMenu && input.isKeyDown(Input.KEY_P))
+			// do pause stuff
+			;
 	}
 
 	/**

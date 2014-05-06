@@ -6,6 +6,7 @@ package gamedev;
 
 import gamedev.states.Menu;
 import gamedev.states.Play;
+import gamedev.states.Scores;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -30,6 +31,7 @@ public class Game extends StateBasedGame {
 	// state numbers
 	public static final int menu = 0;
 	public static final int play = 1;
+	public static final int score = 2;
 
 	// game container
 	private static AppGameContainer appgc = null;
@@ -39,8 +41,9 @@ public class Game extends StateBasedGame {
 	 */
 	public Game(String game) {
 		super(NAME);
-		this.addState(new Menu(menu));
-		this.addState(new Play(play));
+		this.addState(new Menu());
+		this.addState(new Play());
+		this.addState(new Scores());
 	}
 
 	@Override

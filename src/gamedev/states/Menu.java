@@ -20,24 +20,25 @@ public class Menu extends BasicGameState {
 	private int ypos = 0;
 
 	// button images
-	private Image play = null;
-	private Image exit = null;
+	private Image start = null, score = null, exit = null;
 
 	/**
 	 * Create the menu class
 	 */
-	public Menu(int state) {}
+	public Menu() {}
 
 	/**
 	 * Start the menu state
 	 */
 	public void init(GameContainer gc, StateBasedGame sbg) throws SlickException {
 		try {
-			play = new Image("res/buttons/playNow.png");
-			exit = new Image("res/buttons/exitGame.png");
+			start = new Image("res/buttons/blueStart.png");
+			score = new Image("res/buttons/blueScore.png");
+			exit = new Image("res/buttons/blueQuit.png");
 		} catch (SlickException ex) {
 			ex.printStackTrace();
 		}
+
 	}
 
 	/**
@@ -46,8 +47,11 @@ public class Menu extends BasicGameState {
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g) throws SlickException {
 		g.setBackground(Color.blue);
 
-		g.drawImage(play, (gc.getWidth() / 2) - (play.getWidth() / 2), 200);
-		g.drawImage(exit, (gc.getWidth() / 2) - (exit.getWidth() / 2), 250);
+		g.drawImage(start, (gc.getWidth() / 2) - (start.getWidth() / 2), 200);
+
+		g.drawImage(score, (gc.getWidth() / 2) - (score.getWidth() / 2), 315);
+
+		g.drawImage(exit, (gc.getWidth() / 2) - (exit.getWidth() / 2), 430);
 
 		g.drawString("Mouse Position:\nx: " + xpos + "\ny: " + ypos, 200, 200);
 	}
@@ -60,18 +64,23 @@ public class Menu extends BasicGameState {
 
 		xpos = input.getMouseX();
 		ypos = input.getMouseY();
-		if ((xpos >= 535 && xpos < 746) && (ypos >= 200 && ypos < 251)) {
-			if (input.isMouseButtonDown(0)) {
+
+		if ((xpos >= 590 && xpos < 690) && (ypos >= 200 && ypos <= 300)) {
+			if (input.isMousePressed(0)) {
 				sbg.enterState(1);
 			}
 		}
-
-		if ((xpos >= 535 && xpos < 746) && (ypos >= 250 && ypos < 301)) {
-			if (input.isMouseButtonDown(0)) {
+		if ((xpos >= 590 && xpos < 690) && (ypos >= 315 && ypos <= 415)) {
+			if (input.isMousePressed(0)) {
+				System.out.println("Went to scores.");
+			}
+		}
+		if ((xpos >= 590 && xpos < 690) && (ypos >= 430 && ypos <= 530)) {
+			if (input.isMousePressed(0)) {
 				System.exit(0);
 			}
 		}
-		
+
 		if (input.isKeyDown(Input.KEY_ESCAPE))
 			System.exit(0);
 
