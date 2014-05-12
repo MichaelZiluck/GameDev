@@ -30,8 +30,7 @@ public class Play extends BasicGameState {
 	/**
 	 * Create the menu class
 	 */
-	public Play() {
-	}
+	public Play() {}
 
 	/**
 	 * Start the menu state
@@ -76,6 +75,9 @@ public class Play extends BasicGameState {
 
 		if (!paused) {
 
+			float x = p.getX();
+			float y = p.getY();
+
 			if (input.isKeyDown(Input.KEY_W))
 				p.setDirection("up");
 
@@ -90,6 +92,9 @@ public class Play extends BasicGameState {
 
 			if (input.isKeyPressed(Input.KEY_ESCAPE))
 				showMenu = !showMenu;
+
+			if (x < p.getX() && y > p.getY())
+				p.setImage(4);
 
 		}
 		if (showMenu && input.isKeyDown(Input.KEY_Q))
