@@ -1,5 +1,8 @@
 package gamedev.objects;
 
+import java.util.Random;
+
+import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 
@@ -7,12 +10,12 @@ public class Enemy {
 
 	private int health;
 
-	private float x = 0, y = (float) (500 * Math.pow(0.9, x));
+	private float x, y;
 
 	private Image one, two, three, four, five;
 	private Image image = null;
 
-	public Enemy(int health) {
+	public Enemy(GameContainer gc, int health) {
 		this.health = health;
 		try {
 			five = new Image("res/sprites/enemies/five.png");
@@ -24,15 +27,17 @@ public class Enemy {
 		} catch (SlickException ex) {
 			ex.printStackTrace();
 		}
+
+		x = 990;
+		y = new Random().nextInt(680);
 	}
 
 	public double getHealth() {
 		return this.health;
 	}
 
-	public void moveIn() {
-		x += 10;
-		y = (float) (300 * Math.pow(0.9, x));
+	public void move() {
+		x -= 3;
 	}
 
 	public float getX() {
@@ -52,12 +57,16 @@ public class Enemy {
 		switch (health) {
 			case 1:
 				image = one;
+				break;
 			case 2:
 				image = two;
+				break;
 			case 3:
 				image = three;
+				break;
 			case 4:
 				image = four;
+				break;
 			case 5:
 				image = five;
 				break;
