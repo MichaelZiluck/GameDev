@@ -15,7 +15,8 @@ public class Player {
 	private int score;
 
 	private Image player;
-	private Image u, d, r, l;
+	private Image r, l;
+	// private Image u, d;
 
 	private String[] ds = { "left", "right", "up", "down" };
 	private List<String> directions = Arrays.asList(ds);
@@ -29,8 +30,8 @@ public class Player {
 
 	private void createImages() {
 		try {
-			u = new Image("res/sprites/player/up.png");
-			d = new Image("res/sprites/player/down.png");
+			// u = new Image("res/sprites/player/up.png");
+			// d = new Image("res/sprites/player/down.png");
 			r = new Image("res/sprites/player/right.png");
 			l = new Image("res/sprites/player/left.png");
 			player = r;

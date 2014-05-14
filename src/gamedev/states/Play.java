@@ -53,12 +53,11 @@ public class Play extends BasicGameState {
 	 */
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g) throws SlickException {
 
+		g.setColor(Color.white);
 		g.setBackground(Color.black);
 
 		for (Star star : stars)
 			g.fillOval(star.getX(), star.getY(), 5, 5);
-
-		g.drawImage(p.getImage(), p.getX(), p.getY());
 
 		for (Enemy e : enemies)
 			g.drawImage(e.getImage(), e.getX(), e.getY());
@@ -74,6 +73,11 @@ public class Play extends BasicGameState {
 		g.drawLine(gc.getWidth() - 250, gc.getHeight(), gc.getWidth() - 250, 0);
 		g.drawLine(gc.getWidth() - 251, gc.getHeight(), gc.getWidth() - 251, 0);
 		g.drawLine(gc.getWidth() - 252, gc.getHeight(), gc.getWidth() - 252, 0);
+
+		g.setColor(Color.darkGray);
+		g.fillRect(gc.getWidth() - 252, 0, gc.getWidth() - (gc.getWidth() - 252), gc.getHeight());
+
+		g.drawImage(p.getImage(), p.getX(), p.getY());
 
 	}
 

@@ -28,7 +28,7 @@ public class Enemy {
 			ex.printStackTrace();
 		}
 
-		x = 990;
+		x = 1000;
 		y = new Random().nextInt(680);
 	}
 
