@@ -3,6 +3,7 @@ package gamedev.objects;
 import java.util.Arrays;
 import java.util.List;
 
+import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
@@ -21,8 +22,11 @@ public class Player {
 	private String[] ds = { "left", "right", "up", "down" };
 	private List<String> directions = Arrays.asList(ds);
 
+	private Color gun;
+
 	public Player(GameContainer gc) {
 		createImages();
+		setGun(Color.blue);
 		score = 10;
 		x = 100;
 		y = (gc.getHeight() / 2) - (player.getHeight() / 2);
@@ -90,6 +94,14 @@ public class Player {
 
 	public void setScore(int score) {
 		this.score = score;
+	}
+
+	public Color getGun() {
+		return gun;
+	}
+
+	public void setGun(Color gun) {
+		this.gun = gun;
 	}
 
 }

@@ -62,8 +62,13 @@ public class Game extends StateBasedGame {
 		gc.setVSync(true);
 		// gc.setShowFPS(false);
 
+		System.out.println(System.getProperty("user.home"));
+
 		try {
-			File file = new File(new File(Game.class.getProtectionDomain().getCodeSource().getLocation().getPath()).getParentFile(), "scores.txt");
+			File folder = new File("C:" + File.separator + "Program Files" + File.separator + "TechTeam" + File.separator + "GameDev");
+			if (!folder.exists())
+				folder.mkdirs();
+			File file = new File(folder, "scores.txt");
 			if (!file.exists())
 				file.createNewFile();
 			BufferedReader br = new BufferedReader(new FileReader(file));

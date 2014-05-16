@@ -62,22 +62,27 @@ public class Play extends BasicGameState {
 		for (Enemy e : enemies)
 			g.drawImage(e.getImage(), e.getX(), e.getY());
 
-		for (Bullet b : bullets)
+		for (Bullet b : bullets) {
+			g.setColor(b.getColor());
 			g.fillOval(b.getX(), b.getY(), 6, 6);
+		}
 
+		g.setColor(Color.white);
 		if (showMenu)
 			g.drawString("Quit: (Q)\nPause: (P)", 50, 100);
-
-		g.drawString("Score: " + p.getScore(), gc.getWidth() - 225, 15);
-
-		g.drawLine(gc.getWidth() - 250, gc.getHeight(), gc.getWidth() - 250, 0);
-		g.drawLine(gc.getWidth() - 251, gc.getHeight(), gc.getWidth() - 251, 0);
-		g.drawLine(gc.getWidth() - 252, gc.getHeight(), gc.getWidth() - 252, 0);
 
 		g.setColor(Color.darkGray);
 		g.fillRect(gc.getWidth() - 252, 0, gc.getWidth() - (gc.getWidth() - 252), gc.getHeight());
 
+		g.setColor(Color.blue);
+		g.drawRect(gc.getWidth() - 252, 0, gc.getWidth() - (gc.getWidth() - 249), gc.getHeight() - 1);
+		g.drawRect(gc.getWidth() - 251, 1, gc.getWidth() - (gc.getWidth() - 249), gc.getHeight() - 3);
+		g.drawRect(gc.getWidth() - 250, 2, gc.getWidth() - (gc.getWidth() - 249), gc.getHeight() - 5);
+
 		g.drawImage(p.getImage(), p.getX(), p.getY());
+
+		g.setColor(Color.white);
+		g.drawString("Score: " + p.getScore(), gc.getWidth() - 225, 15);
 
 	}
 
@@ -92,7 +97,7 @@ public class Play extends BasicGameState {
 
 			time++;
 
-			if (time == 60) {
+			if (time == 120) {
 				Random r = new Random();
 				enemies.add(new Enemy(gc, 1 + r.nextInt(5)));
 				time = 0;
@@ -131,7 +136,7 @@ public class Play extends BasicGameState {
 			// p.setDirection("right");
 
 			if (input.isKeyPressed(Input.KEY_SPACE))
-				bullets.add(new Bullet(p.getX() + p.getImage().getWidth(), p.getY() + (p.getImage().getHeight() / 2)));
+				bullets.add(new Bullet(p.getX() + p.getImage().getWidth(), p.getY() + (p.getImage().getHeight() / 2), p.getGun()));
 
 			if (input.isKeyPressed(Input.KEY_ESCAPE))
 				showMenu = !showMenu;
