@@ -25,13 +25,9 @@ public class Game extends StateBasedGame {
 	 * The name of the game
 	 */
 	public static final String NAME = "Bullet Hell";
-
 	public static HashMap<String, Integer> scores = new HashMap<String, Integer>();
-
 	// state numbers
-	public static final int menu = 0;
-	public static final int play = 1;
-	public static final int score = 2;
+	public static final int menu = 0;public static final int play = 1;	public static final int score = 2;
 
 	// game container
 	private static AppGameContainer appgc = null;

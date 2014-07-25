@@ -2,7 +2,6 @@ package gamedev.objects;
 
 import java.util.Random;
 
-import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 
@@ -15,7 +14,7 @@ public class Enemy {
 	private Image one, two, three, four, five;
 	private Image image = null;
 
-	public Enemy(GameContainer gc, int health) {
+	public Enemy(int health) {
 		this.health = health;
 		try {
 			five = new Image("res/sprites/enemies/five.png");

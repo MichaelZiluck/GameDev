@@ -99,7 +99,7 @@ public class Play extends BasicGameState {
 
 			if (time == 120) {
 				Random r = new Random();
-				enemies.add(new Enemy(gc, 1 + r.nextInt(5)));
+				enemies.add(new Enemy(1 + r.nextInt(5)));
 				time = 0;
 			}
 
